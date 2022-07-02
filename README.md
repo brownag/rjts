@@ -23,8 +23,12 @@ remotes::install_github("brownag/rjts")
 
 ## Example
 
-This is an example showing how to read Well-known Text (WKT), perform
-various basic geometric operations, returning the WKT result.
+This is an example showing how to read and write Well-Known Text (WKT)
+and Well-Known Binary. You can perform various basic geometric
+operations by accessing
+[`Geometry`](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/geom/Geometry.html)
+class methods exposed in the `read()` result object. Use `$` to access
+methods.
 
 ``` r
 library(rjts)
@@ -45,7 +49,22 @@ ww <- WKTWriter()
 ww$writeFormatted(x$convexHull())
 #> [1] "POLYGON ((30 5, 10 10, 10 30, 20 45, 40 40, 45 30, 45 20, 30 5))"
 
-## TODO: WKBWriter example
+wb <- WKBWriter()
+y <- wb$write(x$convexHull())
+
+class(y)
+#> [1] "raw"
+y
+#>   [1] 00 00 00 00 03 00 00 00 01 00 00 00 08 40 3e 00 00 00 00 00 00 40 14 00 00
+#>  [26] 00 00 00 00 40 24 00 00 00 00 00 00 40 24 00 00 00 00 00 00 40 24 00 00 00
+#>  [51] 00 00 00 40 3e 00 00 00 00 00 00 40 34 00 00 00 00 00 00 40 46 80 00 00 00
+#>  [76] 00 00 40 44 00 00 00 00 00 00 40 44 00 00 00 00 00 00 40 46 80 00 00 00 00
+#> [101] 00 40 3e 00 00 00 00 00 00 40 46 80 00 00 00 00 00 40 34 00 00 00 00 00 00
+#> [126] 40 3e 00 00 00 00 00 00 40 14 00 00 00 00 00 00
+
+wbr <- WKBReader()
+wbr$read(y)
+#> [1] "Java-Object{POLYGON ((30 5, 10 10, 10 30, 20 45, 40 40, 45 30, 45 20, 30 5))}"
 
 # Geometry objects/results also have a toString() method that returns WKT
 x$getBoundary()$toString()

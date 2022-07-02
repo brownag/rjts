@@ -33,7 +33,7 @@ remotes::install_github("brownag/rjts")
 
 ## Example
 
-This is an example showing how to read Well-known Text (WKT), perform various basic geometric operations, returning the WKT result.
+This is an example showing how to read and write Well-Known Text (WKT) and Well-Known Binary. You can perform various basic geometric operations by accessing [`Geometry`](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/geom/Geometry.html) class methods exposed in the `read()` result object. Use `$` to access methods.
 
 ```{r example}
 library(rjts)
@@ -50,7 +50,14 @@ x$getGeometryType()
 ww <- WKTWriter()
 ww$writeFormatted(x$convexHull())
 
-## TODO: WKBWriter example
+wb <- WKBWriter()
+y <- wb$write(x$convexHull())
+
+class(y)
+y
+
+wbr <- WKBReader()
+wbr$read(y)
 
 # Geometry objects/results also have a toString() method that returns WKT
 x$getBoundary()$toString()
