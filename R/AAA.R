@@ -8,10 +8,7 @@
     # NOTE: this should probably not be done on CRAN
     #       is there a better way to make sure the JAR is present?
     if (interactive()) {
-      res <- try(install_jts(quiet = TRUE))
-      if (inherits(res, 'try-error')){
-        message(res[1])
-      }
+      try(install_jts(quiet = TRUE))
     }
   }
 

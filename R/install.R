@@ -78,6 +78,7 @@
 #'
 #' Downloads JTS JAR files to `inst/java` using `utils::download.file(..., mode="wb")`
 #'
+#' @param path Package folder to install into; Default: `find.package("rjts")`
 #' @param url Optional: custom URL or path to JAR file
 #' @param javadoc Download Javadoc JAR? Default: `FALSE`
 #' @param sources Download sources JAR? Default: `FALSE`

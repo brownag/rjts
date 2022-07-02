@@ -15,6 +15,8 @@ install_jts(
 )
 }
 \arguments{
+\item{path}{Package folder to install into; Default: \code{find.package("rjts")}}
+
 \item{url}{Optional: custom URL or path to JAR file}
 
 \item{javadoc}{Download Javadoc JAR? Default: \code{FALSE}}
