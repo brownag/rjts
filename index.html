@@ -58,7 +58,8 @@
 <div class="section level1">
 <div class="page-header"><h1 id="rjts">rjts<a class="anchor" aria-label="anchor" href="#rjts"></a>
 </h1></div>
-<!-- badges: start --><!-- badges: end --><p>The goal of {rjts} is to provide a basic {rJava} wrapper around JTS Topology Suite &lt;<a href="https://www.osgeo.org/projects/jts/" class="external-link uri">https://www.osgeo.org/projects/jts/</a>&gt;.</p>
+<!-- badges: start -->
+<p>The goal of {rjts} is to provide a basic {rJava} wrapper around JTS Topology Suite &lt;<a href="https://www.osgeo.org/projects/jts/" class="external-link uri">https://www.osgeo.org/projects/jts/</a>&gt;.</p>
 <p>See the Javadoc &lt;<a href="https://locationtech.github.io/jts/javadoc/" class="external-link uri">https://locationtech.github.io/jts/javadoc/</a>&gt; to see the tools that are provided via JTS.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
@@ -74,7 +75,7 @@
 <p>This is an example showing how to read and write Well-Known Text (WKT) and Well-Known Binary. You can perform various basic geometric operations by accessing <a href="https://locationtech.github.io/jts/javadoc/org/locationtech/jts/geom/Geometry.html" class="external-link"><code>Geometry</code></a> class methods exposed in the <code>read()</code> result object. Use <code>$</code> to access methods.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rjts</span><span class="op">)</span></span>
-<span><span class="co">#&gt; rjts (0.1.0.9000) -- R interface to the JTS Topology Suite</span></span>
+<span><span class="co">#&gt; rjts (0.1.0.9001) -- R interface to the JTS Topology Suite</span></span>
 <span><span class="co">#&gt; Added JTS version 1.19.0 to Java classpath</span></span>
 <span></span>
 <span><span class="va">wr</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/WKTReader.html">WKTReader</a></span><span class="op">(</span><span class="op">)</span></span>
@@ -141,7 +142,13 @@
 </ul>
 </div>
 
-
+<div class="dev-status">
+<h2 data-toc-skip>Dev status</h2>
+<ul class="list-unstyled">
+<li><a href="https://github.com/brownag/rjts/actions" class="external-link"><img src="https://github.com/brownag/rjts/workflows/R-CMD-check/badge.svg" alt="R-CMD-check Build Status"></a></li>
+<li><a href="https://humus.rocks/rjts/" class="external-link"><img src="https://img.shields.io/badge/docs-HTML-informational" alt="rjts Manual"></a></li>
+</ul>
+</div>
 
   </div>
 </div>
