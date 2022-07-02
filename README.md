@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# rjts
+# {rjts}
 
 <!-- badges: start -->
 
@@ -19,11 +19,54 @@ the tools that are provided via JTS.
 
 ## Installation
 
-You can install the development version of {rjts} thusly:
+You can install the development version of {rjts} with {remotes}
 
 ``` r
-# install.packages("remotes")
+if (!requireNamespace("remotes")) install.packages("remotes")
 remotes::install_github("brownag/rjts")
+```
+
+Once the package is installed, you will need to install the required JAR
+files.
+
+``` r
+library(rjts)
+#> rjts (#.#.#) -- R interface to the JTS Topology Suite
+#> 
+#>   Unable to load JTS JAR files! Perhaps the package was installed with an empty 'inst/java' directory?
+#>                    
+#>    - Run `install_jts()` to download libraries from GitHub <https://github.com/locationtech/jts/releases>
+#>                    
+#>    - Then, re-install the package. It may be convenient to use a local instance of the GitHub repository to install from.
+```
+
+You can download and install JAR libraries from GitHub
+<https://github.com/locationtech/jts/releases> with `install_jts()`. You
+will need to run this installation command in a *local* instance of the
+package repository that you can then install the package from (again).
+
+For instance you can do:
+
+``` sh
+git clone http://github.com/brownag/rjts.git
+cd rjts
+Rscript -e "rjts::install_jts('.'); remotes::install_local(force = TRUE)"
+```
+
+This clones the Git repository and enters it, runs `install_jts()`
+(requires the development version be installed from GitHub as above),
+then runs `remotes::install_local()` to *re-install* from the local
+instance of the package (where `"inst/java"` has been populated with
+relevant JAR files).
+
+``` r
+library(rjts)
+
+#> rjts (#.#.#) -- R interface to the JTS Topology Suite
+#> Added JTS version #.#.# to Java classpath
+#>   JAR files:
+#>      jts-core-#.#.#.jar
+#>      JTSTestBuilder.jar
 ```
 
 ## Example

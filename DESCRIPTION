@@ -1,7 +1,7 @@
 Package: rjts
 Type: Package
 Title: R interface for the JTS Topology Suite 
-Version: 0.1.0.9001
+Version: 0.1.1
 Author: Andrew G. Brown
 Maintainer: Andrew G. Brown <brown.andrewg@gmail.com>
 Description: The JTS Topology Suite <https://github.com/locationtech/jts> is a Java library for creating and manipulating vector geometry. It also provides a comprehensive set of geometry test cases, and the TestBuilder GUI application for working with and visualizing geometry and JTS functions.
