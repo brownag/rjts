@@ -74,16 +74,14 @@
 <span><span class="co">#&gt; rjts (#.#.#) -- R interface to the JTS Topology Suite</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;   Unable to load JTS JAR files! Perhaps the package was installed with an empty 'inst/java' directory?</span></span>
-<span><span class="co">#&gt;                    </span></span>
-<span><span class="co">#&gt;    - Run `install_jts()` to download libraries from GitHub &lt;https://github.com/locationtech/jts/releases&gt;</span></span>
-<span><span class="co">#&gt;                    </span></span>
-<span><span class="co">#&gt;    - Then, re-install the package. It may be convenient to use a local instance of the GitHub repository to install from.</span></span></code></pre></div>
+<span><span class="co">#&gt;    - Run `install_jts()` to download libraries from GitHub &lt;https://github.com/locationtech/jts/releases&gt;. Then, re-install the package. </span></span>
+<span><span class="co">#&gt;    - It may be convenient to use a local instance of the GitHub repository to install from. See instructions at &lt;https://humus.rocks/rjts/&gt;</span></span></code></pre></div>
 <p>You can download and install JAR libraries from GitHub &lt;<a href="https://github.com/locationtech/jts/releases" class="external-link uri">https://github.com/locationtech/jts/releases</a>&gt; with <code><a href="reference/install_jts.html">install_jts()</a></code>. You will need to run this installation command in a <em>local</em> instance of the package repository that you can then install the package from (again).</p>
 <p>For instance, you can do:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">git</span> clone http://github.com/brownag/rjts.git</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="ex">Rscript</span> -e <span class="st">"rjts::install_jts('rjts')"</span></span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="ex">Rscript</span> -e <span class="st">"remotes::install_local('rjts', force = TRUE)"</span></span></code></pre></div>
-<p>This clones the Git repository and enters it, runs <code><a href="reference/install_jts.html">install_jts()</a></code> (requires {rjts} be installed from GitHub as above), then runs <code><a href="https://remotes.r-lib.org/reference/install_local.html" class="external-link">remotes::install_local()</a></code> to <em>re-install</em> from the local instance of the package (where <code>"inst/java"</code> has been populated with relevant JAR files).</p>
+<p>This clones the Git repository, runs <code><a href="reference/install_jts.html">install_jts()</a></code> (requires {rjts} be installed from GitHub as above), then runs <code><a href="https://remotes.r-lib.org/reference/install_local.html" class="external-link">remotes::install_local()</a></code> to <em>re-install</em> from the local instance of the package (where <code>"inst/java"</code> has been populated with relevant JAR files).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rjts</span><span class="op">)</span></span>
 <span></span>
@@ -99,8 +97,11 @@
 <p>This is an example showing how to read and write Well-Known Text (WKT) and Well-Known Binary. You can perform various basic geometric operations by accessing <a href="https://locationtech.github.io/jts/javadoc/org/locationtech/jts/geom/Geometry.html" class="external-link"><code>Geometry</code></a> class methods exposed in the <code>read()</code> result object. Use <code>$</code> to access methods.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rjts</span><span class="op">)</span></span>
-<span><span class="co">#&gt; rjts (0.1.0.9001) -- R interface to the JTS Topology Suite</span></span>
+<span><span class="co">#&gt; rjts (0.1.1) -- R interface to the JTS Topology Suite</span></span>
 <span><span class="co">#&gt; Added JTS version 1.19.0 to Java classpath</span></span>
+<span><span class="co">#&gt;   JAR files:</span></span>
+<span><span class="co">#&gt;  jts-core-1.19.0.jar</span></span>
+<span><span class="co">#&gt;  JTSTestBuilder.jar</span></span>
 <span></span>
 <span><span class="va">wr</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/WKTReader.html">WKTReader</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
