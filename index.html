@@ -59,8 +59,8 @@
 <div class="page-header"><h1 id="rjts">{rjts}<a class="anchor" aria-label="anchor" href="#rjts"></a>
 </h1></div>
 <!-- badges: start -->
-<p>The goal of {rjts} is to provide a basic {rJava} wrapper around JTS Topology Suite &lt;<a href="https://www.osgeo.org/projects/jts/" class="external-link uri">https://www.osgeo.org/projects/jts/</a>&gt;.</p>
-<p>See the Javadoc &lt;<a href="https://locationtech.github.io/jts/javadoc/" class="external-link uri">https://locationtech.github.io/jts/javadoc/</a>&gt; to see the tools that are provided via JTS.</p>
+<p>The goal of {rjts} is to provide a basic {rJava} wrapper for the JTS Topology Suite &lt;<a href="https://www.osgeo.org/projects/jts/" class="external-link uri">https://www.osgeo.org/projects/jts/</a>&gt;.</p>
+<p>Check out the Javadoc &lt;<a href="https://locationtech.github.io/jts/javadoc/" class="external-link uri">https://locationtech.github.io/jts/javadoc/</a>&gt; to see the tools that are provided via JTS.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -78,12 +78,12 @@
 <span><span class="co">#&gt;    - Run `install_jts()` to download libraries from GitHub &lt;https://github.com/locationtech/jts/releases&gt;</span></span>
 <span><span class="co">#&gt;                    </span></span>
 <span><span class="co">#&gt;    - Then, re-install the package. It may be convenient to use a local instance of the GitHub repository to install from.</span></span></code></pre></div>
-<p>You can download and install JAR libraries from GitHub <a href="https://github.com/locationtech/jts/releases" class="external-link uri">https://github.com/locationtech/jts/releases</a> with <code><a href="reference/install_jts.html">install_jts()</a></code>. You will need to run this installation command in a <em>local</em> instance of the package repository that you can then install the package from (again).</p>
-<p>For instance you can do:</p>
+<p>You can download and install JAR libraries from GitHub &lt;<a href="https://github.com/locationtech/jts/releases" class="external-link uri">https://github.com/locationtech/jts/releases</a>&gt; with <code><a href="reference/install_jts.html">install_jts()</a></code>. You will need to run this installation command in a <em>local</em> instance of the package repository that you can then install the package from (again).</p>
+<p>For instance, you can do:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">git</span> clone http://github.com/brownag/rjts.git</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">cd</span> rjts</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="ex">Rscript</span> -e <span class="st">"rjts::install_jts('.'); remotes::install_local(force = TRUE)"</span></span></code></pre></div>
-<p>This clones the Git repository and enters it, runs <code><a href="reference/install_jts.html">install_jts()</a></code> (requires the development version be installed from GitHub as above), then runs <code><a href="https://remotes.r-lib.org/reference/install_local.html" class="external-link">remotes::install_local()</a></code> to <em>re-install</em> from the local instance of the package (where <code>"inst/java"</code> has been populated with relevant JAR files).</p>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">Rscript</span> -e <span class="st">"rjts::install_jts('rjts')"</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="ex">Rscript</span> -e <span class="st">"remotes::install_local('rjts', force = TRUE)"</span></span></code></pre></div>
+<p>This clones the Git repository and enters it, runs <code><a href="reference/install_jts.html">install_jts()</a></code> (requires {rjts} be installed from GitHub as above), then runs <code><a href="https://remotes.r-lib.org/reference/install_local.html" class="external-link">remotes::install_local()</a></code> to <em>re-install</em> from the local instance of the package (where <code>"inst/java"</code> has been populated with relevant JAR files).</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rjts</span><span class="op">)</span></span>
 <span></span>
