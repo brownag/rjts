@@ -11,11 +11,11 @@ Status](https://github.com/brownag/rjts/workflows/R-CMD-check/badge.svg)](https:
 Manual](https://img.shields.io/badge/docs-HTML-informational)](https://humus.rocks/rjts/)
 <!-- badges: end -->
 
-The goal of {rjts} is to provide a basic {rJava} wrapper around JTS
+The goal of {rjts} is to provide a basic {rJava} wrapper for the JTS
 Topology Suite \<<https://www.osgeo.org/projects/jts/>\>.
 
-See the Javadoc \<<https://locationtech.github.io/jts/javadoc/>\> to see
-the tools that are provided via JTS.
+Check out the Javadoc \<<https://locationtech.github.io/jts/javadoc/>\>
+to see the tools that are provided via JTS.
 
 ## Installation
 
@@ -41,23 +41,24 @@ library(rjts)
 ```
 
 You can download and install JAR libraries from GitHub
-<https://github.com/locationtech/jts/releases> with `install_jts()`. You
-will need to run this installation command in a *local* instance of the
-package repository that you can then install the package from (again).
+\<<https://github.com/locationtech/jts/releases>\> with `install_jts()`.
+You will need to run this installation command in a *local* instance of
+the package repository that you can then install the package from
+(again).
 
-For instance you can do:
+For instance, you can do:
 
 ``` sh
 git clone http://github.com/brownag/rjts.git
-cd rjts
-Rscript -e "rjts::install_jts('.'); remotes::install_local(force = TRUE)"
+Rscript -e "rjts::install_jts('rjts')"
+Rscript -e "remotes::install_local('rjts', force = TRUE)"
 ```
 
 This clones the Git repository and enters it, runs `install_jts()`
-(requires the development version be installed from GitHub as above),
-then runs `remotes::install_local()` to *re-install* from the local
-instance of the package (where `"inst/java"` has been populated with
-relevant JAR files).
+(requires {rjts} be installed from GitHub as above), then runs
+`remotes::install_local()` to *re-install* from the local instance of
+the package (where `"inst/java"` has been populated with relevant JAR
+files).
 
 ``` r
 library(rjts)
