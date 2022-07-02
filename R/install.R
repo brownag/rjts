@@ -80,8 +80,8 @@
 #'
 #' @param path Package folder to install into; Default: `find.package("rjts")`
 #' @param url Optional: custom URL or path to JAR file
-#' @param javadoc Download Javadoc JAR? Default: `FALSE`
-#' @param sources Download sources JAR? Default: `FALSE`
+#' @param javadoc Download "Javadoc" JAR? Default: `FALSE`
+#' @param sources Download "sources" JAR? Default: `FALSE`
 #' @param testbuilder Download JTS Test Builder JAR? Default: `TRUE`
 #' @param overwrite Overwrite existing JAR file (if present)? Default `FALSE`
 #' @param ... additional arguments passed to `utils::download.file()` (e.g. `quiet`, `method`)
@@ -189,7 +189,7 @@ install_jts <- function(
 #' @param pkgname Package name; default: `"rjts"`
 #' @param pattern Passed to `file.path()` REGEX pattern to match
 #'
-#' @return result of recursive `file.remove()`,  invisbly
+#' @return logical. result of recursive `all(file.remove(...))`,  invisibly
 #' @export
 #'
 #' @examples
@@ -197,5 +197,12 @@ install_jts <- function(
 #' uninstall_jts()
 #' }
 uninstall_jts <- function(libname = dirname(find.package(pkgname)), pkgname = "rjts", pattern = "\\.jar$") {
-  invisible(file.remove(list.files(file.path(libname, pkgname, "inst"), pattern = pattern, recursive = TRUE, full.names = TRUE)))
+  invisible(all(file.remove(
+    list.files(
+      file.path(libname, pkgname, "inst"),
+      pattern = pattern,
+      recursive = TRUE,
+      full.names = TRUE
+    )
+  )))
 }

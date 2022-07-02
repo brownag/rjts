@@ -34,10 +34,8 @@ library(rjts)
 #> rjts (#.#.#) -- R interface to the JTS Topology Suite
 #> 
 #>   Unable to load JTS JAR files! Perhaps the package was installed with an empty 'inst/java' directory?
-#>                    
-#>    - Run `install_jts()` to download libraries from GitHub <https://github.com/locationtech/jts/releases>
-#>                    
-#>    - Then, re-install the package. It may be convenient to use a local instance of the GitHub repository to install from.
+#>    - Run `install_jts()` to download libraries from GitHub <https://github.com/locationtech/jts/releases>. Then, re-install the package. 
+#>    - It may be convenient to use a local instance of the GitHub repository to install from. See instructions at <https://humus.rocks/rjts/>
 ```
 
 You can download and install JAR libraries from GitHub
@@ -54,11 +52,10 @@ Rscript -e "rjts::install_jts('rjts')"
 Rscript -e "remotes::install_local('rjts', force = TRUE)"
 ```
 
-This clones the Git repository and enters it, runs `install_jts()`
-(requires {rjts} be installed from GitHub as above), then runs
-`remotes::install_local()` to *re-install* from the local instance of
-the package (where `"inst/java"` has been populated with relevant JAR
-files).
+This clones the Git repository, runs `install_jts()` (requires {rjts} be
+installed from GitHub as above), then runs `remotes::install_local()` to
+*re-install* from the local instance of the package (where `"inst/java"`
+has been populated with relevant JAR files).
 
 ``` r
 library(rjts)
@@ -81,8 +78,11 @@ methods.
 
 ``` r
 library(rjts)
-#> rjts (0.1.0.9001) -- R interface to the JTS Topology Suite
+#> rjts (0.1.1) -- R interface to the JTS Topology Suite
 #> Added JTS version 1.19.0 to Java classpath
+#>   JAR files:
+#>  jts-core-1.19.0.jar
+#>  JTSTestBuilder.jar
 
 wr <- WKTReader()
 

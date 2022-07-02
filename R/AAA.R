@@ -26,8 +26,8 @@
   ver <- JTSVersion()
   cpmsg <- ifelse(inherits(ver, 'try-error') || ver == "<no-version>",
                   "\n\n  Unable to load JTS JAR files! Perhaps the package was installed with an empty 'inst/java' directory?
-                   \n   - Run `install_jts()` to download libraries from GitHub <https://github.com/locationtech/jts/releases>
-                   \n   - Then, re-install the package. It may be convenient to use a local instance of the GitHub repository to install from.",
+                      - Run `install_jts()` to download libraries from GitHub <https://github.com/locationtech/jts/releases>. Then, re-install the package.
+                      - It may be convenient to use a local instance of the GitHub repository to install from. See instructions at <https://humus.rocks/rjts/>",
                   paste0("\nAdded JTS version ", ver, " to Java classpath\n",
                          paste0(c("  JAR files:", .JARfiles(libname, pkgname)), collapse = "\n\t")))
   packageStartupMessage(paste0("rjts (", packageVersion("rjts"), ") -- R interface to the JTS Topology Suite", cpmsg))

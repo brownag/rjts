@@ -18,7 +18,7 @@ uninstall_jts(
 \item{pattern}{Passed to \code{file.path()} REGEX pattern to match}
 }
 \value{
-result of recursive \code{file.remove()},  invisbly
+logical. result of recursive \code{all(file.remove(...))},  invisibly
 }
 \description{
 Remove JAR files from package \code{"/inst/"} folder

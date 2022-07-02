@@ -19,9 +19,9 @@ install_jts(
 
 \item{url}{Optional: custom URL or path to JAR file}
 
-\item{javadoc}{Download Javadoc JAR? Default: \code{FALSE}}
+\item{javadoc}{Download "Javadoc" JAR? Default: \code{FALSE}}
 
-\item{sources}{Download sources JAR? Default: \code{FALSE}}
+\item{sources}{Download "sources" JAR? Default: \code{FALSE}}
 
 \item{testbuilder}{Download JTS Test Builder JAR? Default: \code{TRUE}}
 
