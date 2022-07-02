@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 # rjts
 
 <!-- badges: start -->
+[![R-CMD-check Build
+Status](https://github.com/brownag/rjts/workflows/R-CMD-check/badge.svg)](https://github.com/brownag/rjts/actions)
+[![rjts
+Manual](https://img.shields.io/badge/docs-HTML-informational)](https://humus.rocks/rjts/)
 <!-- badges: end -->
 
 The goal of {rjts} is to provide a basic {rJava} wrapper around JTS Topology Suite <<https://www.osgeo.org/projects/jts/>>.

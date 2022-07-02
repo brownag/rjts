@@ -4,6 +4,11 @@
 # rjts
 
 <!-- badges: start -->
+
+[![R-CMD-check Build
+Status](https://github.com/brownag/rjts/workflows/R-CMD-check/badge.svg)](https://github.com/brownag/rjts/actions)
+[![rjts
+Manual](https://img.shields.io/badge/docs-HTML-informational)](https://humus.rocks/rjts/)
 <!-- badges: end -->
 
 The goal of {rjts} is to provide a basic {rJava} wrapper around JTS
@@ -32,7 +37,7 @@ methods.
 
 ``` r
 library(rjts)
-#> rjts (0.1.0.9000) -- R interface to the JTS Topology Suite
+#> rjts (0.1.0.9001) -- R interface to the JTS Topology Suite
 #> Added JTS version 1.19.0 to Java classpath
 
 wr <- WKTReader()
