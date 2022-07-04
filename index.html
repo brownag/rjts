@@ -94,7 +94,8 @@
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
 </h2>
-<p>This is an example showing how to read and write Well-Known Text (WKT) and Well-Known Binary. You can perform various basic geometric operations by accessing <a href="https://locationtech.github.io/jts/javadoc/org/locationtech/jts/geom/Geometry.html" class="external-link"><code>Geometry</code></a> class methods exposed in the <code>read()</code> result object. Use <code>$</code> to access methods.</p>
+<p>This is an example showing how to read and write Well-Known Text (WKT) and Well-Known Binary (WKB).</p>
+<p>You can perform various basic geometric operations by accessing <a href="https://locationtech.github.io/jts/javadoc/org/locationtech/jts/geom/Geometry.html" class="external-link"><code>Geometry</code></a> class methods exposed in the <code>read()</code> result object. Use <code>$</code> to access methods.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">rjts</span><span class="op">)</span></span>
 <span><span class="co">#&gt; rjts (0.1.1) -- R interface to the JTS Topology Suite</span></span>
@@ -112,11 +113,12 @@
 <span><span class="va">x</span><span class="op">$</span><span class="fu">getGeometryType</span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "MultiPolygon"</span></span>
 <span></span>
-<span><span class="co"># use the WKTWriter to return Well-known text</span></span>
+<span><span class="co"># use the WKTWriter to return Well-Known Text</span></span>
 <span><span class="va">ww</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/WKTWriter.html">WKTWriter</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">ww</span><span class="op">$</span><span class="fu">writeFormatted</span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="fu">convexHull</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "POLYGON ((30 5, 10 10, 10 30, 20 45, 40 40, 45 30, 45 20, 30 5))"</span></span>
 <span></span>
+<span><span class="co"># use the WKBWriter to return Well-Known Binary</span></span>
 <span><span class="va">wb</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/WKBWriter.html">WKBWriter</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">y</span> <span class="op">&lt;-</span> <span class="va">wb</span><span class="op">$</span><span class="fu">write</span><span class="op">(</span><span class="va">x</span><span class="op">$</span><span class="fu">convexHull</span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
@@ -130,6 +132,7 @@
 <span><span class="co">#&gt; [101] 00 40 3e 00 00 00 00 00 00 40 46 80 00 00 00 00 00 40 34 00 00 00 00 00 00</span></span>
 <span><span class="co">#&gt; [126] 40 3e 00 00 00 00 00 00 40 14 00 00 00 00 00 00</span></span>
 <span></span>
+<span><span class="co"># use the WKBReader to convert Well-Known Binary to a JTS Geometry object</span></span>
 <span><span class="va">wbr</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/WKBReader.html">WKBReader</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">wbr</span><span class="op">$</span><span class="fu">read</span><span class="op">(</span><span class="va">y</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Java-Object{POLYGON ((30 5, 10 10, 10 30, 20 45, 40 40, 45 30, 45 20, 30 5))}"</span></span>
