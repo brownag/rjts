@@ -70,8 +70,9 @@ library(rjts)
 ## Example
 
 This is an example showing how to read and write Well-Known Text (WKT)
-and Well-Known Binary. You can perform various basic geometric
-operations by accessing
+and Well-Known Binary (WKB).
+
+You can perform various basic geometric operations by accessing
 [`Geometry`](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/geom/Geometry.html)
 class methods exposed in the `read()` result object. Use `$` to access
 methods.
@@ -93,11 +94,12 @@ x <- wr$read("MULTIPOLYGON (((40 40, 20 45, 45 30, 40 40)),
 x$getGeometryType()
 #> [1] "MultiPolygon"
 
-# use the WKTWriter to return Well-known text
+# use the WKTWriter to return Well-Known Text
 ww <- WKTWriter()
 ww$writeFormatted(x$convexHull())
 #> [1] "POLYGON ((30 5, 10 10, 10 30, 20 45, 40 40, 45 30, 45 20, 30 5))"
 
+# use the WKBWriter to return Well-Known Binary
 wb <- WKBWriter()
 y <- wb$write(x$convexHull())
 
@@ -111,6 +113,7 @@ y
 #> [101] 00 40 3e 00 00 00 00 00 00 40 46 80 00 00 00 00 00 40 34 00 00 00 00 00 00
 #> [126] 40 3e 00 00 00 00 00 00 40 14 00 00 00 00 00 00
 
+# use the WKBReader to convert Well-Known Binary to a JTS Geometry object
 wbr <- WKBReader()
 wbr$read(y)
 #> [1] "Java-Object{POLYGON ((30 5, 10 10, 10 30, 20 45, 40 40, 45 30, 45 20, 30 5))}"
