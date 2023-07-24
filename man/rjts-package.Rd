@@ -4,9 +4,9 @@
 \name{rjts-package}
 \alias{rjts}
 \alias{rjts-package}
-\title{rjts: R interface for the JTS Topology Suite}
+\title{rjts: Interface to Java Topology Suite (JTS) Library}
 \description{
-The JTS Topology Suite \url{https://github.com/locationtech/jts} is a Java library for creating and manipulating vector geometry. It also provides a comprehensive set of geometry test cases, and the TestBuilder GUI application for working with and visualizing geometry and JTS functions.
+The Java Topology Suite (JTS) is an open source library of spatial predicates and functions for processing geometries. \url{https://github.com/locationtech/jts} 'JTS' provides a complete, consistent, and robust implementation of fundamental algorithms for processing linear geometry on the 2-dimensional Cartesian plane. It also provides a comprehensive set of geometry test cases, and the 'TestBuilder' GUI application for working with and visualizing geometry and 'JTS' functions.
 }
 \seealso{
 Useful links:
