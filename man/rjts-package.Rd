@@ -8,4 +8,12 @@
 \description{
 The JTS Topology Suite \url{https://github.com/locationtech/jts} is a Java library for creating and manipulating vector geometry. It also provides a comprehensive set of geometry test cases, and the TestBuilder GUI application for working with and visualizing geometry and JTS functions.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/brownag/rjts}
+  \item \url{https://humus.rocks/rjts}
+}
+
+}
 \keyword{internal}
