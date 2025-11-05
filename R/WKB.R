@@ -1,9 +1,9 @@
 
 #' Create Well-known Binary Reader
 #'
-#' Creates a new reference to the JTS `WKBWriter` class.
+#' Creates a new reference to the JTS `WKBReader` class.
 #'
-#' @return an object of class `jobjRef` to new instance of `org.locationtech.jts.io.WKBWriter`
+#' @return an object of class `jobjRef` to new instance of `org.locationtech.jts.io.WKBReader`
 #'
 #' @export
 WKBReader <- function() {

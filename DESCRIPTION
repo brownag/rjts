@@ -1,16 +1,18 @@
 Package: rjts
 Type: Package
 Title: Interface to Java Topology Suite (JTS) Library
-Version: 0.1.1
+Version: 0.2.0
 Author: Andrew G. Brown
 Maintainer: Andrew G. Brown <brown.andrewg@gmail.com>
-Description: The Java Topology Suite (JTS) is an open source library of spatial predicates and functions for processing geometries. <https://github.com/locationtech/jts> 
+Description: The Java Topology Suite (JTS) is an open source library of spatial predicates and functions for processing geometries. <https://github.com/locationtech/jts>
     'JTS' provides a complete, consistent, and robust implementation of fundamental algorithms for processing linear geometry on the 2-dimensional Cartesian plane. It also provides a comprehensive set of geometry test cases, and the 'TestBuilder' GUI application for working with and visualizing geometry and 'JTS' functions.
 License: EPL
 Encoding: UTF-8
 LazyData: true
-Imports: 
+Depends:
+    R (>= 4.0)
+Imports:
     rJava
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 Roxygen: list(markdown = TRUE)
 URL: https://github.com/brownag/rjts, https://humus.rocks/rjts

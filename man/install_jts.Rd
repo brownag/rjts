@@ -5,7 +5,6 @@
 \title{Install JTS Topology Suite from Latest GitHub Release}
 \usage{
 install_jts(
-  path = find.package("rjts"),
   url = NULL,
   javadoc = FALSE,
   sources = FALSE,
@@ -15,8 +14,6 @@ install_jts(
 )
 }
 \arguments{
-\item{path}{Package folder to install into; Default: \code{find.package("rjts")}}
-
 \item{url}{Optional: custom URL or path to JAR file}
 
 \item{javadoc}{Download "Javadoc" JAR? Default: \code{FALSE}}
@@ -30,10 +27,17 @@ install_jts(
 \item{...}{additional arguments passed to \code{utils::download.file()} (e.g. \code{quiet}, \code{method})}
 }
 \value{
-Downloads and installs JAR files to \code{file.path(find.package("rjts"), "inst", "java")}, then calls \code{rJava::.jpackage()} to load the JAR files into Java classpath.
+Downloads and installs JAR files to user data directory (invisibly returns result).
+After running this function, the JAR files will be automatically loaded when the package is attached.
 }
 \description{
-Downloads JTS JAR files to \code{inst/java} using \code{utils::download.file(..., mode="wb")}
+Downloads JTS JAR files to user data directory using \code{utils::download.file(..., mode="wb")}.
+}
+\details{
+JAR files are stored in a platform-specific user data directory as determined by
+\code{tools::R_user_dir("rjts", which = "data")}, which respects \code{R_USER_DATA_DIR},
+\code{XDG_DATA_HOME}, and platform defaults. This avoids the need to bundle JAR files
+in the package or re-install the package after downloading JARs.
 }
 \examples{
 \dontrun{
