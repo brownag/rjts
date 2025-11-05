@@ -27,7 +27,7 @@
 }
 
 #' @importFrom rJava .jnew
-#' @importFrom utils packageVersion packageStartupMessage
+#' @importFrom utils packageVersion
 #' @importFrom tools R_user_dir
 .onAttach <- function(libname, pkgname) {
   ver <- JTSVersion()

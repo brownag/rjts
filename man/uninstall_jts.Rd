@@ -2,26 +2,18 @@
 % Please edit documentation in R/install.R
 \name{uninstall_jts}
 \alias{uninstall_jts}
-\title{Remove JAR files from package \code{"/inst/"} folder}
+\title{Remove JAR files from user data directory}
 \usage{
-uninstall_jts(
-  libname = dirname(find.package(pkgname)),
-  pkgname = "rjts",
-  pattern = "\\\\.jar$"
-)
+uninstall_jts(pattern = "\\\\.jar$")
 }
 \arguments{
-\item{libname}{Library name; default: \code{dirname(find.package(pkgname))}}
-
-\item{pkgname}{Package name; default: \code{"rjts"}}
-
-\item{pattern}{Passed to \code{file.path()} REGEX pattern to match}
+\item{pattern}{Passed to \code{list.files()} REGEX pattern to match JAR files}
 }
 \value{
 logical. result of recursive \code{all(file.remove(...))},  invisibly
 }
 \description{
-Remove JAR files from package \code{"/inst/"} folder
+Remove JAR files from user data directory
 }
 \examples{
 \dontrun{
