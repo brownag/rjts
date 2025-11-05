@@ -119,9 +119,11 @@ install_jts <- function(url = NULL,
 
   # use custom URL to either a release or a path to jar or find latest release
   if (!is.null(url) && !all(endsWith(url, ".jar"))) {
+    tag <- url
     pth <- .get_JTS_core_GH_path(url)
   } else if (!is.null(url) && all(endsWith(url, ".jar"))) {
     pth <- url
+    tag <- NULL
   } else {
     tag <- .get_latest_JTS_release_tags(n = 1, ...)
     pth <- .get_JTS_core_GH_path(tag)
@@ -145,7 +147,7 @@ install_jts <- function(url = NULL,
     return(invisible(res))
   }
 
-  if (javadoc) {
+  if (javadoc && !is.null(tag)) {
     pth <- .get_JTS_javadoc_GH_path(tag)
     def <- file.path(defdir, basename(pth))
     res <- try(download.file(pth, destfile = def, overwrite = overwrite, mode = "wb", ...))
@@ -154,9 +156,11 @@ install_jts <- function(url = NULL,
                       "); you can manually specify the URL/path to a JAR file via `url` argument", call. = FALSE))
       message(res[1])
     }
+  } else if (javadoc && is.null(tag)) {
+    message("Note: javadoc option is only available when using default GitHub releases or custom release URLs, not with direct JAR file URLs.")
   }
 
-  if (sources) {
+  if (sources && !is.null(tag)) {
     pth <- .get_JTS_sources_GH_path(tag)
     def <- file.path(defdir, basename(pth))
     res <- try(download.file(pth, destfile = def, overwrite = overwrite, mode = "wb", ...))
@@ -165,9 +169,11 @@ install_jts <- function(url = NULL,
                       "); you can manually specify the URL/path to a JAR file via `url` argument", call. = FALSE))
       message(res[1])
     }
+  } else if (sources && is.null(tag)) {
+    message("Note: sources option is only available when using default GitHub releases or custom release URLs, not with direct JAR file URLs.")
   }
 
-  if (testbuilder) {
+  if (testbuilder && !is.null(tag)) {
     pth <- .get_JTS_testbuilder_GH_path(tag)
     def <- file.path(defdir, basename(pth))
     res <- try(download.file(pth, destfile = def, overwrite = overwrite, mode = "wb", ...))
@@ -176,6 +182,8 @@ install_jts <- function(url = NULL,
                       "); you can manually specify the URL/path to a JAR file via `url` argument", call. = FALSE))
       message(res[1])
     }
+  } else if (testbuilder && is.null(tag)) {
+    message("Note: testbuilder option is only available when using default GitHub releases or custom release URLs, not with direct JAR file URLs.")
   }
 
   if (!inherits(res, 'try-error')) {
