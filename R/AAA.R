@@ -41,7 +41,7 @@
   # Handle different states: JARs loaded, JARs not found, version not found
   if (length(jar_files) == 0) {
     # No JARs found - provide helpful message
-    cpmsg <- paste0("\n\n  No JTS JAR files found. Run `install_jts()` to download libraries from GitHub.\n",
+    cpmsg <- paste0("\n  No JTS JAR files found. Run `install_jts()` to download libraries from GitHub.\n",
                     "  JAR files will be installed to:\n    ", datadir)
   } else if (inherits(ver, 'try-error') || ver == "<no-version>") {
     # JARs found but can't determine version - graceful fallback
