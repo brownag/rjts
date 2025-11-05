@@ -5,8 +5,6 @@
 
 <!-- badges: start -->
 
-[![R-CMD-check Build
-Status](https://github.com/brownag/rjts/workflows/R-CMD-check/badge.svg)](https://github.com/brownag/rjts/actions)
 [![rjts
 Manual](https://img.shields.io/badge/docs-HTML-informational)](https://humus.rocks/rjts/)
 [![R-CMD-check](https://github.com/brownag/rjts/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/brownag/rjts/actions/workflows/R-CMD-check.yaml)
