@@ -7,7 +7,7 @@
 
 [![rjts
 Manual](https://img.shields.io/badge/docs-HTML-informational)](https://humus.rocks/rjts/)
-[![R-CMD-check](https://github.com/brownag/rjts/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/brownag/rjts/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/brownag/rjts/actions/workflows/R-CMD-check.yml/badge.svg)](https://github.com/brownag/rjts/actions/workflows/R-CMD-check.yml)
 <!-- badges: end -->
 
 The goal of {rjts} is to provide a basic {rJava} wrapper for the JTS
