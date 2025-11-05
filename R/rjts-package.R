@@ -14,7 +14,7 @@ NULL
 #' @return character. Semantic version number of loaded JTS library.
 #' @export
 JTSVersion <- function() {
-  ver <- try(rJava::.jnew("org.locationtech.jts.JTSVersion")$toString())
+  ver <- try(rJava::.jnew("org.locationtech.jts.JTSVersion")$toString(), silent = TRUE)
   if (inherits(ver, 'try-error')) {
     ver <- "<no-version>"
   } else {

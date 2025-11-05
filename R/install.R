@@ -76,9 +76,13 @@
 
 #' Install JTS Topology Suite from Latest GitHub Release
 #'
-#' Downloads JTS JAR files to `inst/java` using `utils::download.file(..., mode="wb")`
+#' Downloads JTS JAR files to user data directory using `utils::download.file(..., mode="wb")`.
 #'
-#' @param path Package folder to install into; Default: `find.package("rjts")`
+#' JAR files are stored in a platform-specific user data directory as determined by
+#' `tools::R_user_dir("rjts", which = "data")`, which respects `R_USER_DATA_DIR`,
+#' `XDG_DATA_HOME`, and platform defaults. This avoids the need to bundle JAR files
+#' in the package or re-install the package after downloading JARs.
+#'
 #' @param url Optional: custom URL or path to JAR file
 #' @param javadoc Download "Javadoc" JAR? Default: `FALSE`
 #' @param sources Download "sources" JAR? Default: `FALSE`
@@ -86,24 +90,30 @@
 #' @param overwrite Overwrite existing JAR file (if present)? Default `FALSE`
 #' @param ... additional arguments passed to `utils::download.file()` (e.g. `quiet`, `method`)
 #'
-#' @return Downloads and installs JAR files to `file.path(find.package("rjts"), "inst", "java")`, then calls `rJava::.jpackage()` to load the JAR files into Java classpath.
+#' @return Downloads and installs JAR files to user data directory (invisibly returns result).
+#'   After running this function, the JAR files will be automatically loaded when the package is attached.
 #' @export
-#' @importFrom rJava .jaddClassPath
+#' @importFrom tools R_user_dir
 #' @examples
 #' \dontrun{
 #' install_jts()
 #' }
-install_jts <- function(
-           path = find.package("rjts"),
-           url = NULL,
-           javadoc = FALSE,
-           sources = FALSE,
-           testbuilder = TRUE,
-           overwrite = FALSE,
-           ...) {
+install_jts <- function(url = NULL,
+                        javadoc = FALSE,
+                        sources = FALSE,
+                        testbuilder = TRUE,
+                        overwrite = FALSE,
+                        ...) {
+
+  # Get user data directory for JARs
+  defdir <- tools::R_user_dir("rjts", which = "data")
+  if (!dir.exists(defdir)) {
+    dir.create(defdir, recursive = TRUE)
+  }
 
   # short circuit for local file
   if (!is.null(url) && file.exists(url)) {
+    def <- file.path(defdir, basename(url))
     return(invisible(file.copy(url, def, overwrite = overwrite)))
   }
 
@@ -117,17 +127,9 @@ install_jts <- function(
     pth <- .get_JTS_core_GH_path(tag)
   }
 
-  defdir <- file.path(path, "inst", "java")
-  extdir <- file.path(path, "inst", "extdata")
-  if (!dir.exists(defdir)) {
-    dir.create(defdir, recursive = TRUE)
-  }
-  if (!dir.exists(extdir)) {
-    dir.create(extdir, recursive = TRUE)
-  }
   def <- file.path(defdir, basename(pth))
 
-  res <- try(download.file(pth, destfile = def, overwrite = overwrite, ...))
+  res <- try(download.file(pth, destfile = def, overwrite = overwrite, mode = "wb", ...))
 
   if (inherits(res, 'try-error')) {
     what <- ifelse(is.null(url),
@@ -140,12 +142,12 @@ install_jts <- function(
 
   # Assume if JAR files specified explicitly don't need any add'l remote paths
   if (!is.null(url) && all(endsWith(url, ".jar"))) {
-    return(res)
+    return(invisible(res))
   }
 
   if (javadoc) {
     pth <- .get_JTS_javadoc_GH_path(tag)
-    def <- file.path(extdir, basename(pth))
+    def <- file.path(defdir, basename(pth))
     res <- try(download.file(pth, destfile = def, overwrite = overwrite, mode = "wb", ...))
     if (inherits(res, 'try-error')) {
       res <- try(stop("Failed to install latest version of JTS javadoc (", basename(pth),
@@ -156,7 +158,7 @@ install_jts <- function(
 
   if (sources) {
     pth <- .get_JTS_sources_GH_path(tag)
-    def <- file.path(extdir, basename(pth))
+    def <- file.path(defdir, basename(pth))
     res <- try(download.file(pth, destfile = def, overwrite = overwrite, mode = "wb", ...))
     if (inherits(res, 'try-error')) {
       res <- try(stop("Failed to install latest version of JTS sources (", basename(pth),
@@ -177,29 +179,32 @@ install_jts <- function(
   }
 
   if (!inherits(res, 'try-error')) {
-    "Install complete. You will now need to re-install the R package with the new `inst/java` folder."
+    message("Install complete! JAR files are now available at: ", defdir)
   }
 
   invisible(res)
 }
 
-#' Remove JAR files from package `"/inst/"` folder
+#' Remove JAR files from user data directory
 #'
-#' @param libname Library name; default: `dirname(find.package(pkgname))`
-#' @param pkgname Package name; default: `"rjts"`
-#' @param pattern Passed to `file.path()` REGEX pattern to match
+#' @param pattern Passed to `list.files()` REGEX pattern to match JAR files
 #'
 #' @return logical. result of recursive `all(file.remove(...))`,  invisibly
 #' @export
+#' @importFrom tools R_user_dir
 #'
 #' @examples
 #' \dontrun{
 #' uninstall_jts()
 #' }
-uninstall_jts <- function(libname = dirname(find.package(pkgname)), pkgname = "rjts", pattern = "\\.jar$") {
+uninstall_jts <- function(pattern = "\\.jar$") {
+  datadir <- tools::R_user_dir("rjts", which = "data")
+  if (!dir.exists(datadir)) {
+    return(invisible(TRUE))
+  }
   invisible(all(file.remove(
     list.files(
-      file.path(libname, pkgname, "inst"),
+      datadir,
       pattern = pattern,
       recursive = TRUE,
       full.names = TRUE

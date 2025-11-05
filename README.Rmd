@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 Status](https://github.com/brownag/rjts/workflows/R-CMD-check/badge.svg)](https://github.com/brownag/rjts/actions)
 [![rjts
 Manual](https://img.shields.io/badge/docs-HTML-informational)](https://humus.rocks/rjts/)
+[![R-CMD-check](https://github.com/brownag/rjts/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/brownag/rjts/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 The goal of {rjts} is to provide a basic {rJava} wrapper for the JTS Topology Suite <<https://www.osgeo.org/projects/jts/>>.
@@ -35,28 +36,24 @@ if (!requireNamespace("remotes")) install.packages("remotes")
 remotes::install_github("brownag/rjts")
 ```
 
-Once the package is installed, you will need to install the required JAR files.
+Requires R >= 4.0 and {rJava}.
+
+Once the package is installed, you will need to download the required JAR files using `install_jts()`:
 
 ```r
 library(rjts)
 #> rjts (#.#.#) -- R interface to the JTS Topology Suite
-#> 
-#>   Unable to load JTS JAR files! Perhaps the package was installed with an empty 'inst/java' directory?
-#>    - Run `install_jts()` to download libraries from GitHub <https://github.com/locationtech/jts/releases>. Then, re-install the package. 
-#>    - It may be convenient to use a local instance of the GitHub repository to install from. See instructions at <https://humus.rocks/rjts/>
+#>
+#>   Unable to load JTS JAR files! JARs should be downloaded to:
+#>     ~/.local/share/R/rjts/
+#>
+#>   Run `install_jts()` to download libraries from GitHub <https://github.com/locationtech/jts/releases>.
+
+install_jts()
+#> Install complete! JAR files are now available at: ~/.local/share/R/rjts/
 ```
 
-You can download and install JAR libraries from GitHub <<https://github.com/locationtech/jts/releases>> with `install_jts()`. You will need to run this installation command in a _local_ instance of the package repository that you can then install the package from (again). 
-
-For instance, you can do:
-
-```sh
-git clone http://github.com/brownag/rjts.git
-Rscript -e "rjts::install_jts('rjts')"
-Rscript -e "remotes::install_local('rjts', force = TRUE)"
-```
-
-This clones the Git repository, runs `install_jts()` (requires {rjts} be installed from GitHub as above), then runs `remotes::install_local()` to _re-install_ from the local instance of the package (where `"inst/java"` has been populated with relevant JAR files).
+After running `install_jts()`, the JAR files will be automatically loaded when you load the package:
 
 ```r
 library(rjts)
@@ -67,6 +64,8 @@ library(rjts)
 #>      jts-core-#.#.#.jar
 #>      JTSTestBuilder.jar
 ```
+
+JAR files are stored in a user-specific data directory as determined by `tools::R_user_dir("rjts", which = "data")`, which respects `R_USER_DATA_DIR`, `XDG_DATA_HOME`, and platform defaults. This approach avoids the need to bundle JAR files in the package and keeps the git repository clean.
 
 ## Example
 
