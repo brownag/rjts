@@ -7,8 +7,8 @@
 WKBReader()
 }
 \value{
-an object of class \code{jobjRef} to new instance of \code{org.locationtech.jts.io.WKBWriter}
+an object of class \code{jobjRef} to new instance of \code{org.locationtech.jts.io.WKBReader}
 }
 \description{
-Creates a new reference to the JTS \code{WKBWriter} class.
+Creates a new reference to the JTS \code{WKBReader} class.
 }
